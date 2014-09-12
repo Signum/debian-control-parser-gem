@@ -28,10 +28,10 @@ module DebianControlParser
     key=value=''
     data.each_line do |line|
       case line
-      when /^(\w+): (.+)/ # "Key: Value"
+      when /^(.+): (.+)/ # "Key: Value"
         yield(key,value) unless value.empty?
         key,value=$1,$2
-      when /^(\w+):\s*/   # "Key:" (start of multi-line entry)
+      when /^(.+):\s*/   # "Key:" (start of multi-line entry)
         yield(key,value) unless value.empty?
         key=$1
         value=''
