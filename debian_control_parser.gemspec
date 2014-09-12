@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
     'http://github.com/Signum/debian-control-parser-gem'
   s.license       = 'MIT'
 
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rake', '~> 10'
+  s.add_development_dependency 'rspec', '~> 3'
 end
