@@ -1,0 +1,106 @@
+Package: abrowser
+Priority: optional
+Section: web
+Installed-Size: 153
+Maintainer: Ubuntu Mozilla Team <ubuntu-mozillateam@lists.ubuntu.com>
+Architecture: amd64
+Source: firefox
+Version: 11.0+build1-0ubuntu4
+Depends: firefox (>= 9.0)
+Filename: pool/main/f/firefox/abrowser_11.0+build1-0ubuntu4_amd64.deb
+Size: 8940
+MD5sum: e8781af38a6de76126d190fc10a14bf2
+SHA1: 408abd5f960d4b02bc18581df348954eb7620772
+SHA256: cdfad0e4435c035b3115bdec08d79ccfc68bf9480e89df9270b3b6befa348699
+Description: Safe and easy web browser from Mozilla - transitional package
+Description-md5: e89058e4775caff7d26313fa8811675e
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 18m
+
+Package: abrowser-branding
+Priority: optional
+Section: web
+Installed-Size: 153
+Maintainer: Ubuntu Mozilla Team <ubuntu-mozillateam@lists.ubuntu.com>
+Architecture: amd64
+Source: firefox
+Version: 11.0+build1-0ubuntu4
+Depends: firefox (>= 9.0)
+Filename: pool/main/f/firefox/abrowser-branding_11.0+build1-0ubuntu4_amd64.deb
+Size: 8958
+MD5sum: d0703b9205d8ee0f7f1dcefde0bd6e3f
+SHA1: 79c90f8f167570938f99eca1b65acaab2d2efa36
+SHA256: 48280bb579e0694a27020abd761fcd05d6434d4d1fad11987db18e76428a26f6
+Description: Safe and easy web browser from Mozilla - transitional package
+Description-md5: e89058e4775caff7d26313fa8811675e
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 18m
+
+Package: accountsservice
+Priority: standard
+Section: gnome
+Installed-Size: 320
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Alessio Treglia <alessio@debian.org>
+Architecture: amd64
+Version: 0.6.15-2ubuntu9
+Depends: libc6 (>= 2.4), libdbus-1-3 (>= 1.0.2), libdbus-glib-1-2 (>= 0.88), libglib2.0-0 (>= 2.25.11), libpolkit-gobject-1-0 (>= 0.101), libaccountsservice0 (= 0.6.15-2ubuntu9), dbus
+Suggests: gnome-control-center
+Filename: pool/main/a/accountsservice/accountsservice_0.6.15-2ubuntu9_amd64.deb
+Size: 44040
+MD5sum: 9d1cea48e516c08054d822f842f67559
+SHA1: 4a2370cdda477be6f7a4760d5b787ac901544001
+SHA256: 5d8e40ce35ea30f621573d40b17dcd21e3b974f2dd5e096c6c10701af8cdc5d0
+Description: query and manipulate user account information
+Homepage: http://cgit.freedesktop.org/accountsservice/
+Description-md5: 8aeed0a03c7cd494f0c4b8d977483d7e
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 5y
+Task: standard, kubuntu-active, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master
+
+Package: acct
+Priority: optional
+Section: admin
+Installed-Size: 396
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Mathieu Trudel-Lapierre <mathieu.tl@gmail.com>
+Architecture: amd64
+Version: 6.5.5-1ubuntu1
+Depends: dpkg (>= 1.15.4) | install-info, libc6 (>= 2.4)
+Filename: pool/main/a/acct/acct_6.5.5-1ubuntu1_amd64.deb
+Size: 97660
+MD5sum: 7ad2f9799db46b94435b4355ece976e2
+SHA1: 75880a381c374a81fdd0a88e57f250ee7a706137
+SHA256: 631aace3c65ef396c2f382b762c3eeac846899e122237b2f943f379368420e7a
+Description: The GNU Accounting utilities for process and login accounting
+Homepage: http://www.gnu.org/software/acct/
+Description-md5: b24f45ef7d67937aa65ecb8e36a7e5a1
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 5y
+
+Package: acl
+Priority: optional
+Section: utils
+Installed-Size: 184
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Original-Maintainer: Anibal Monsalve Salazar <anibal@debian.org>
+Architecture: amd64
+Version: 2.2.51-5ubuntu1
+Depends: libacl1 (>= 2.2.51-5), libc6 (>= 2.4)
+Filename: pool/main/a/acl/acl_2.2.51-5ubuntu1_amd64.deb
+Size: 43244
+MD5sum: 40f19425dd30268e35c754f60f21be5d
+SHA1: f75a19e33129d958d2b769bf99db613cecb07268
+SHA256: d3c1fedde3e6532139a969562d9945e517fa7ad9553fe1ede9908b26fb11633c
+Description: Access control list utilities
+Multi-Arch: foreign
+Homepage: http://savannah.nongnu.org/projects/acl/
+Description-md5: 75eddab5ddd2597445b43aa18f0db77a
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Origin: Ubuntu
+Supported: 5y
+Task: ubuntu-desktop, print-server, ubuntu-usb, kubuntu-desktop, kubuntu-active-desktop, kubuntu-active, edubuntu-desktop, edubuntu-usb, xubuntu-desktop, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master, lubuntu-core, ubuntustudio-desktop
