@@ -2,7 +2,7 @@ module DebianControlParser
   # Iterator that splits up the input of a debian control file
   # by empty lines. For example Debian "Packages" files consist
   # of one block for each package listed in it.
-  def blocks(data)
+  def self.blocks(data)
     gathered_lines = ''
     data.each_line do |line|
       if line.chomp.empty?  # empty line found that seperates blocks
@@ -24,7 +24,7 @@ module DebianControlParser
   # Iterator that reads a block of lines from a control file. If the file
   # consists of several empty-line-seperated blocks it must first be
   # split by using the 'blocks' iterator.
-  def parse(data)
+  def self.parse(data)
     key=value=''
     data.each_line do |line|
       case line
