@@ -37,8 +37,6 @@ module DebianControlParser
         value=''
       when /^\s+(.+)/     # " Indented multi-line value"
         value << $1+"\n"
-      else
-        puts "Unexpected line found: #{line}"
       end
     end
 
