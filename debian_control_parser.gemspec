@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'debian_control_parser'
+  s.name        = 'debian-control-parser'
   s.version     = '0.1'
   s.date        = '2014-09-11'
   s.summary     = "Parses Debian control files"
