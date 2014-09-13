@@ -4,54 +4,78 @@ require 'debian_control_parser'
 RSpec.describe DebianControlParser do
   describe "parsing Release file" do
     before :example do
-      @keyval = {}
+      @fields = {}
       filename_release = File.dirname(__FILE__) + '/fixtures/Release'
       open(filename_release) do |data|
-        DebianControlParser::parse(data) do |key,value|
-          @keyval[key]=value
+        DebianControlParser::fields(data) do |name,value|
+          @fields[name]=value
         end
       end
     end
 
-    it "parses all keys" do
-      expect(@keyval.length).to eq(12)
+    it "finds all fields" do
+      expect(@fields.length).to eq(12)
     end
-    it "finds the Codename key" do
-      expect(@keyval['Codename']).to eq 'precise'
+    it "finds the Codename field" do
+      expect(@fields['Codename']).to eq 'precise'
     end
 
-    it "counts 160 lines as the value for the 'MD5Sum' key" do
-      expect(@keyval['MD5Sum'].lines.length).to be 160
+    it "counts 160 lines as the value for the 'MD5Sum' field" do
+      expect(@fields['MD5Sum'].lines.length).to be 160
     end
   end
 
-  describe "parsing part of a Packages file with multiple blocks" do
+  describe "parsing part of a Packages file with multiple paragraphs" do
     before :example do
-      @blocks = []
+      @paragraphs = []
       filename_release = File.dirname(__FILE__) + '/fixtures/Packages'
       open(filename_release) do |data|
-        DebianControlParser::blocks(data) do |block|
-          keyval = {}
-          DebianControlParser::parse(block) do |key,value|
-            keyval[key]=value
+        DebianControlParser::paragraphs(data) do |paragraph|
+          @fields = {}
+          DebianControlParser::fields(paragraph) do |name,value|
+            @fields[name]=value
           end
-          @blocks << keyval
+          @paragraphs << @fields
         end
       end
     end
 
-    it "finds all 5 blocks" do
-      expect(@blocks.length).to eq 5
+    it "finds all 5 paragraphs" do
+      expect(@paragraphs.length).to eq 5
     end
 
-    it "counts 19 keys in the first block" do
-      expect(@blocks.first.length).to eq 19
+    it "counts 19 names in the first paragraph" do
+      expect(@paragraphs.first.length).to eq 19
     end
 
-    it "finds the last key 'Supported' in all blocks" do
-      @blocks.each do |block|
-        expect(block).to include 'Supported'
+    it "finds the last name 'Supported' in all paragraphs" do
+      @paragraphs.each do |paragraph|
+        expect(paragraph).to include 'Supported'
       end
+    end
+  end
+
+  describe "parsing part of a Release file as an enumerator" do
+    before :example do
+      @fields = {}
+      filename_release = File.dirname(__FILE__) + '/fixtures/Release'
+      open(filename_release) do |data|
+        DebianControlParser::fields(data).each do |name,value|
+          @fields[name]=value
+        end
+      end
+    end
+
+    it "parses all fields" do
+      expect(@fields.length).to eq(12)
+    end
+
+    it "finds the Codename field" do
+      expect(@fields['Codename']).to eq 'precise'
+    end
+
+    it "counts 160 lines as the value for the 'MD5Sum' field" do
+      expect(@fields['MD5Sum'].lines.length).to be 160
     end
   end
 end
