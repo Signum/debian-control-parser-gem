@@ -7,7 +7,8 @@ RSpec.describe DebianControlParser do
       @fields = {}
       filename_release = File.dirname(__FILE__) + '/fixtures/Release'
       open(filename_release) do |data|
-        DebianControlParser::fields(data) do |name,value|
+        dcp = DebianControlParser.new(data)
+        dcp.fields do |name,value|
           @fields[name]=value
         end
       end
@@ -30,9 +31,11 @@ RSpec.describe DebianControlParser do
       @paragraphs = []
       filename_release = File.dirname(__FILE__) + '/fixtures/Packages'
       open(filename_release) do |data|
-        DebianControlParser::paragraphs(data) do |paragraph|
+        dcp = DebianControlParser.new(data)
+        dcp.paragraphs do |paragraph|
           @fields = {}
-          DebianControlParser::fields(paragraph) do |name,value|
+          dcp_paragraph = DebianControlParser.new(paragraph)
+          dcp_paragraph.fields do |name,value|
             @fields[name]=value
           end
           @paragraphs << @fields
@@ -60,7 +63,8 @@ RSpec.describe DebianControlParser do
       @fields = {}
       filename_release = File.dirname(__FILE__) + '/fixtures/Release'
       open(filename_release) do |data|
-        DebianControlParser::fields(data).each do |name,value|
+        dcp = DebianControlParser.new(data)
+        dcp.fields.each do |name,value|
           @fields[name]=value
         end
       end
