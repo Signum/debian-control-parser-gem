@@ -7,8 +7,8 @@ Installation
 ------------
 	gem install debian-control-parser
 
-Sample application
-------------------
+Sample application to parse control files with multiple paragraphs
+------------------------------------------------------------------
 ```ruby
 require 'debian_control_parser'
 
@@ -30,6 +30,23 @@ parser.paragraphs do |paragraph|
   paragraph.fields do |name,value|
     puts "Name=#{name} / Value=#{value}"
   end
+end
+
+```
+
+Sample application to parse control files with just one paragraph
+-----------------------------------------------------------------
+```ruby
+require 'debian_control_parser'
+
+data=<<EOF
+Foo: bar
+Answer-to-Everything: 42
+EOF
+
+parser = DebianControlParser.new(data)
+parser.fields do |name,value|
+  puts "Name=#{name} / Value=#{value}"
 end
 
 ```
