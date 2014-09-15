@@ -1,11 +1,20 @@
+# Parses Debian control files
 class DebianControlParser
+  # Creates a new parser instance from either a file-like
+  # object or a string of multiple lines containing a
+  # Debian control file like Packages or Release.
+  #
+  # @param data [File,String] the object to read lines from
+  # @return [DebianControlParser] a parser instance
   def initialize(data)
     @data = data
   end
 
-  # Iterator that reads a paragraph from a control file. If the file
+  # Iterator that returns fields from the input data. If the file
   # consists of several paragraphs (seperated by empty lines)
   # it must first be split by using the 'paragraphs' iterator.
+  #
+  # yield [Array<String,String>] a name/value pair for each field
   def fields
     return enum_for(:each) unless block_given?
 
@@ -33,6 +42,8 @@ class DebianControlParser
   # Iterator that splits up the input of a debian control file
   # by empty lines. For example Debian "Packages" files consist
   # of one paragraph for each package listed in it.
+  #
+  # yield [DebianControlParser] a parser instance that you can use .items on
   def paragraphs
     return enum_for(:each) unless block_given?
 
