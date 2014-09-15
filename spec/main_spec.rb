@@ -3,12 +3,11 @@ require 'debian_control_parser'
 
 RSpec.describe DebianControlParser do
   describe "parsing Release file" do
-    before :example do
+    before :context do
       @fields = {}
       filename_release = File.dirname(__FILE__) + '/fixtures/Release'
       open(filename_release) do |data|
-        DebianControlParser.new(data).fields.each do |name,value|
-          puts "name=#{name} value=#{value}"
+        DebianControlParser.new(data).fields do |name,value|
           @fields[name]=value
         end
       end
@@ -27,15 +26,14 @@ RSpec.describe DebianControlParser do
   end
 
   describe "parsing part of a Packages file with multiple paragraphs" do
-    before :example do
+    before :context do
       @paragraphs = []
       filename_release = File.dirname(__FILE__) + '/fixtures/Packages'
       open(filename_release) do |data|
         dcp = DebianControlParser.new(data)
         dcp.paragraphs do |paragraph|
           @fields = {}
-          dcp_paragraph = DebianControlParser.new(paragraph)
-          dcp_paragraph.fields do |name,value|
+          paragraph.fields do |name,value|
             @fields[name]=value
           end
           @paragraphs << @fields
@@ -59,12 +57,12 @@ RSpec.describe DebianControlParser do
   end
 
   describe "parsing part of a Release file as an enumerator" do
-    before :example do
+    before :context do
       @fields = {}
       filename_release = File.dirname(__FILE__) + '/fixtures/Release'
       open(filename_release) do |data|
         dcp = DebianControlParser.new(data)
-        dcp.fields.each do |name,value|
+        dcp.fields do |name,value|
           @fields[name]=value
         end
       end
