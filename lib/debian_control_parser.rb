@@ -1,19 +1,19 @@
 module DebianControlParser
 
-  # Paragraph works for control files consisting of just one paragraph.
-  class Paragraph
+  # Base works for control files with multiple paragraphs
+  class Parser
     def initialize(data)
-      @paragraph = data
+      @data = data
     end
 
     # Iterator that reads a paragraph from a control file. If the file
     # consists of several paragraphs (seperated by empty lines)
     # it must first be split by using the 'paragraphs' iterator.
-    def each
+    def fields
       return enum_for(:each) unless block_given?
 
       name=value=''
-      @paragraph.each_line do |line|
+      @data.each_line do |line|
         case line
         when /^(.+): (.+)/ # "Key: Value"
           yield(name,value) unless value.empty?
@@ -32,18 +32,11 @@ module DebianControlParser
       # Any lines left at the end of the input?
       yield(name,value) unless value.empty?
     end
-  end
-
-  # Base works for control files with multiple paragraphs
-  class Parser
-    def initialize(data)
-      @data = data
-    end
 
     # Iterator that splits up the input of a debian control file
     # by empty lines. For example Debian "Packages" files consist
     # of one paragraph for each package listed in it.
-    def each
+    def paragraph
       return enum_for(:each) unless block_given?
 
       gathered_lines = '' # collects all lines belonging to a field
@@ -67,11 +60,4 @@ module DebianControlParser
     end
   end
 
-  def self.paragraphs(data)
-    Parser.new(data)
-  end
-
-  def self.fields(data)
-    Paragraph.new(data)
-  end
 end

@@ -7,8 +7,8 @@ RSpec.describe DebianControlParser do
       @fields = {}
       filename_release = File.dirname(__FILE__) + '/fixtures/Release'
       open(filename_release) do |data|
-        dcp = DebianControlParser.new(data)
-        dcp.fields do |name,value|
+        DebianControlParser.new(data).fields.each do |name,value|
+          puts "name=#{name} value=#{value}"
           @fields[name]=value
         end
       end
