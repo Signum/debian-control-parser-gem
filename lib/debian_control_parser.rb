@@ -4,7 +4,7 @@ class DebianControlParser
   # object or a string of multiple lines containing a
   # Debian control file like Packages or Release.
   #
-  # @param data [File,String] the object to read lines from
+  # @param data [File,String] the object to read lines from (e.g. a multiline-string or a file)
   # @return [DebianControlParser] a parser instance
   def initialize(data)
     @data = data
@@ -43,7 +43,7 @@ class DebianControlParser
   # by empty lines. For example Debian "Packages" files consist
   # of one paragraph for each package listed in it.
   #
-  # yield [DebianControlParser] a parser instance that you can use .items on
+  # @yield [DebianControlParser] a parser instance that you can use .fields on
   def paragraphs
     return enum_for(:each) unless block_given?
 
