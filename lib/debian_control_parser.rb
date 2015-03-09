@@ -18,25 +18,25 @@ class DebianControlParser
   def fields
     return enum_for(:each) unless block_given?
 
-    name=value=''
+    name = value = ''
     @data.each_line do |line|
       case line
-      when /^(.+): (.+)/ # "Key: Value"
-        yield(name,value) unless value.empty?
-        name,value=$1,$2
-      when /^(.+):\s*/   # "Key:" (start of multi-line entry)
-        yield(name,value) unless value.empty?
-        name=$1
-        value=''
-      when /^\s+(.+)/     # " Indented multi-line value"
-        value << $1+"\n"
-      when /^\s+$/        # Empty line
-        break
+        when /^(\w+): (.+)/ # "Key: Value"
+          yield(name, value) unless value.empty?
+          name, value = $1, $2
+        when /^(\w+):\s*/ # "Key:" (start of multi-line entry)
+          yield(name, value) unless value.empty?
+          name = $1
+          value = ''
+        when /^\s+(.+)/ # " Indented multi-line value"
+          value << $1 + "\n"
+        when /^\s+$/ # Empty line
+          break
       end
     end
 
     # Any lines left at the end of the input?
-    yield(name,value) unless value.empty?
+    yield(name, value) unless value.empty?
   end
 
   # Iterator that splits up the input of a debian control file
@@ -49,8 +49,8 @@ class DebianControlParser
 
     gathered_lines = '' # collects all lines belonging to a field
     @data.each_line do |line|
-      if line.chomp.empty?  # empty line found that seperates paragraphs
-        unless gathered_lines.empty?  # any lines gathered so far?
+      if line.chomp.empty? # empty line found that seperates paragraphs
+        unless gathered_lines.empty? # any lines gathered so far?
           #yield gathered_lines  # return the paragraph
           yield DebianControlParser.new(gathered_lines)
           gathered_lines = ''
