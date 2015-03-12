@@ -21,10 +21,10 @@ class DebianControlParser
     name = value = ''
     @data.each_line do |line|
       case line
-        when /^(\w+): (.+)/ # "Key: Value"
+        when /^(\S+): (.+)/ # "Key: Value"
           yield(name, value) unless value.empty?
           name, value = $1, $2
-        when /^(\w+):\s*/ # "Key:" (start of multi-line entry)
+        when /^(\S+):\s*/ # "Key:" (start of multi-line entry)
           yield(name, value) unless value.empty?
           name = $1
           value = ''
