@@ -29,7 +29,7 @@ class DebianControlParser
           name = $1
           value = ''
         when /^\s+(.+)/ # " Indented multi-line value"
-          value << $1 + "\n"
+          value << "\n" + $1
         when /^\s+$/ # Empty line
           break
       end
